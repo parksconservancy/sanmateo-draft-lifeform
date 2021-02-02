@@ -1,1 +1,6 @@
-# sanmateo-draft-lifeform
+## San Mateo County Enhanced Lifeform Leaflet Map
+This is a simple web map created in leaflet that allows users see the publicly available services without needing GIS software or skills. It uses an Esri plugin for consuming vector tiles. 
+
+The map displays a vector tile service hosted publicly on the Parks Conservancy ArcGIS Online organizational page. 
+
+The tile service is the San Mateo County enhanced lifeform map is a 26-class land use and land cover map of San Mateo County, reflecting the state of the landscape in summer, 2018. The enhanced lifeform map is a draft data product and will be updated and finalized when the fine scale vegetation map is released in 2021. The enhanced lifeform map is a foundational input to the fine scale vegetation map. The fine scale vegetation map will have significantly more floristic detail than the enhanced lifeform map; woody vegetation communities in the fine scale map will be mapped to the alliance level of the National Vegetation Classification. For more information, consult the [full product datasheet](https://vegmap.press/san_mateo_lifeform_datasheet)
