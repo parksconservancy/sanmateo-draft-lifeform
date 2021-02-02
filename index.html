@@ -68,23 +68,6 @@
 			z-index: 800;
 		}
 
-		#logo {
-
-			position: absolute;
-			bottom: 10px;
-			left: 15px;
-			height: 300;
-			width: 280px;
-			padding: 15px 15px;
-			margin: 0;
-			/* Add styles to match Leaflet UI elements */
-			background: rgba(256, 256, 256, 0);
-			box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
-			border: 0px solid #ddd;
-			border-radius: 5px;
-			z-index: 800;
-		}
-
 		h1 {
 			font-family: 'verlag';
 			font-size: 1.30em;
@@ -201,10 +184,6 @@
 					<rect x="10" y="675" width="30" height="20" style="fill: #828282" />
 					<text x="48" y="688" style="font-size: 12px; font-family: 'fairplex';">Other</text>
 
-
-
-
-
 				</svg>
 			</div>
 
@@ -221,8 +200,6 @@
 			</section>
 		</section>
 
-
-
 		<!-- Load Leaflet from CDN -->
 		<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 		<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -230,6 +207,7 @@
 		<!-- Esri Leaflet and Esri Leaflet Vector -->
 		<script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
 		<script src="https://unpkg.com/esri-leaflet-vector@3/dist/esri-leaflet-vector.js"></script>
+		<!-- reference county boundary js file -->
 		<script src="GeoJsons/SanMateoBnd.js"></script>
 
 
@@ -244,7 +222,7 @@
 
 			var map = L.map('map', options);
 
-			// add zoom control to top right
+			// add zoom control to top left
 			L.control.zoom({ position: 'topleft' }).addTo(map);
 
 			// requests some map tiles
@@ -253,24 +231,26 @@
 			// add those tiles to our map element
 			map.addLayer(tiles);
 
+			// create and style geoJSON of county boudary
 			const countyLayer = L.geoJson(county, {
 				style: function (feature) {
 					return {
-						fillOpacity: 0,
-						opacity: 0,
+						fillOpacity: 0, // zero fill color
+						opacity: 0, // zero stroke color
 					};
 				}
 			});
 			countyLayer.addTo(map);
 
+			// add vector tile of lifeform map to app
 			L.esri.Vector.vectorTileLayer("https://tiles.arcgis.com/tiles/tdQLEzq0fgVElWN3/arcgis/rest/services/Lifeform_5_22_20_DRAFT/VectorTileServer", {
 
 			}).addTo(map);
 
-			// zoom to fit screen
+			// zoom to fit screen to san mateo county layer
 			const smcZoom = countyLayer.getBounds()
 
-			// fit bounds to extent of marin open space lands
+			// fit bounds to extent of san mateo county
 			map.fitBounds(smcZoom, {
 				maxzoom: 8
 			});
